@@ -1,37 +1,23 @@
-
-
 plugins {
     // Apply the java plugin to add support for Java
-    id 'java'
-
-   
+    id 'java'  
 }
 
-repositories {
-    
+
+repositories {    
     jcenter()
     mavenCentral()
 }
 
+
 dependencies {
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:28.2-jre'
+    
+    compile group: 'io.cucumber', name: 'cucumber-spring', version: '6.2.2'
 
-    // Use JUnit Jupiter API for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-
-    // Use JUnit Jupiter Engine for testing.
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
-
-    dependencies {
     testImplementation 'io.cucumber:cucumber-java:6.2.2'
     testImplementation 'io.cucumber:cucumber-junit:6.2.2'
     testCompile group: 'io.rest-assured', name: 'rest-assured', version: '4.3.1'
-
-
-}
-
-
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.1.RELEASE'
 }
 
 
@@ -40,11 +26,13 @@ test {
     useJUnitPlatform()
 }
 
+
 configurations {
     cucumberRuntime {
         extendsFrom testImplementation
     }
 }
+
 
 task cucumber() {
     dependsOn assemble, compileTestJava
