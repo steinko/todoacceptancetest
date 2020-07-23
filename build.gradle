@@ -7,12 +7,14 @@ plugins {
 repositories {    
     jcenter()
     mavenCentral()
+     maven { url "http://dl.bintray.com/epam/reportportal" }
 }
 
 
 dependencies {
     
     compile group: 'io.cucumber', name: 'cucumber-spring', version: '6.2.2'
+    implementation 'com.epam.reportportal:agent-java-cucumber4:5.0.0-BETA-11'
 
     testImplementation 'io.cucumber:cucumber-java:6.2.2'
     testImplementation 'io.cucumber:cucumber-junit:6.2.2'
@@ -42,7 +44,7 @@ task cucumber() {
         javaexec {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = [ '--plugin', 'pretty', '--glue', 'org.steinko.todo', 'src/test/resources']
+            args = ['--plugin','pretty', '--glue', 'org.steinko.todo', 'src/test/resources']
         }
     }
 }

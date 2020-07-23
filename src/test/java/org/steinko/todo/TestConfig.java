@@ -10,5 +10,10 @@ public class TestConfig {
 	StepSharing stepSharing()  {
 		return new StepSharing();
 	}
+	
+	@Bean
+	FakeDataSource fakeDataSource()  {
+		return new FakeDataSource();
+	}
 
 }
